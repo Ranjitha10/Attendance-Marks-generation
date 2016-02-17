@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>edit Records</title>
+</head>
+<body>
+
+<?php
+/* 
+	VIEW.PHP
+	Displays all data from 'players' table
+*/
+
+	// connect to the database
+$con=mysqli_connect("localhost","root","","amgs");
+
+	// get results from database
+	$result = mysqli_query($con,"SELECT * FROM parent");
+	
+		
+	// display data in table
+	echo "<p><b>Edit Parent Details</b>";
+	echo "<table border='1' cellpadding='10'>";
+	echo "<tr> <th>name</th> <th>email_id</th> <th>address</th> <th>ph_no</th><th></th> </tr>";
+
+	// loop through results of database query, displaying them in the table
+	while($row = mysqli_fetch_array( $result )) {
+		
+		// echo out the contents of each row into a table
+		echo "<tr>";
+		echo '<td>' . $row['name'] . '</td>';
+		echo '<td>' . $row['email_id'] . '</td>';
+		echo '<td>' . $row['address'] . '</td>';
+		echo '<td>' . $row['ph_no'] . '</td>';
+		 echo ("<td><a href=\"editparentform.php?id=$row[name]\">Edit</a></td></tr>");
+
+      }
+ 
+
+	// close table>
+	echo "</table>";
+?>
+<p><a href="modwhich.php">Go Back</a></p>
+
+</body>
+</html>
